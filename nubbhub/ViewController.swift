@@ -345,6 +345,7 @@ class ViewController: UIViewController, WKNavigationDelegate, ADBannerViewDelega
         //calculate device data
         var devices = [Device]()
         let numberOfDevices = (data.count - 5 - 12) / 5
+        var counter = 1
         
         for n in 0...numberOfDevices - 1 {
             devices.append(Device(id: data[12+(5*n)],
@@ -353,7 +354,12 @@ class ViewController: UIViewController, WKNavigationDelegate, ADBannerViewDelega
                 totalIn: Int(self.parserHelper(data[14+(5*n)])),
                 totalOut: Int(self.parserHelper(data[15+(5*n)])),
                 totalUsage: Int(self.parserHelper(data[16+(5*n)]))))
+            if devices.last!.name == "*Set Device Description" {
+                devices.last!.name = "Unnamed Device #\(counter)"
+                counter += 1
+            }
         }
+        
         
         //return new data
         return Nubb(totalUsage: Int(self.parserHelper(data[3])),

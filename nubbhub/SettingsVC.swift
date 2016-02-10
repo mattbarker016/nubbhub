@@ -66,12 +66,12 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if settingsArray[indexPath.row] == "about" {
-            tableView.cellForRowAtIndexPath(indexPath)?.selected = false
             self.performSegueWithIdentifier("about", sender: self)
         }
-        
+        if settingsArray[indexPath.row] == "notfications" {
+            self.performSegueWithIdentifier("notifications", sender: self)
+        }
         if settingsArray[indexPath.row] == "themes" {
-            tableView.cellForRowAtIndexPath(indexPath)?.selected = false
             UIApplication.sharedApplication().statusBarStyle = .Default
             self.performSegueWithIdentifier("themes", sender: self)
         }
@@ -80,11 +80,10 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             prefs.removeObjectForKey("netid")
             prefs.removeObjectForKey("password")
             prefs.removeObjectForKey("theme")
-            tableView.cellForRowAtIndexPath(indexPath)?.selected = false
             self.performSegueWithIdentifier("unwind", sender: self)
             //self.dismissViewControllerAnimated(true) { () -> Void in }
-            
         }
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

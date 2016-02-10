@@ -24,8 +24,6 @@ class DeviceTableCell: UITableViewCell {
     @IBOutlet weak var upConstraint: NSLayoutConstraint!
     @IBOutlet weak var totalConstraint: NSLayoutConstraint!
     
-    var counter = 0
-    
     func setDevice(device: Device, theme: Theme, bounds: CGRect, reduced: Bool) {
         
         icon.backgroundColor = device.color

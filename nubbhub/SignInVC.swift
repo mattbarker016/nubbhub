@@ -8,7 +8,6 @@
 
 import UIKit
 import WebKit
-import SwiftyRSA
 
 class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
 
@@ -154,27 +153,7 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
         
         if signInWebView.title == "Network Usage-Based Billing" {
             
-            
-            /*
-            let str = "it worked!!!"
-            
-            let pemString = "-----BEGIN RSA PUBLIC KEY-----
-            MIIBCgKCAQEAywsw0aMCjaU91uFUjiBEBmedxAV4y6QFyWvHG6LlWIHyR3tHe3qC
-            sD9LlLc0DUQxd/B9qQ07BZwDF+nZbr4ekYreDcuVrrIxnlzQMPejd7Gvisa5IELm
-            hunM+2HJlFYSTsXbzNE6A36jYX/UDBiqh8tjM9JunHnljKgASQD4bAHBWqK8KVpp
-            4Npko2LhWA35ONjKJsJz1mNKJFWa4w1cp3tfFXjTjXL31f3yKEqJGQJcP5zKhG5/
-            vxHbzT3PFeBWN0+aV/qldz6F9C/jn+/0+2GbmcPeXvV7IbX2kuY0ezaVuCq2y1GN
-            mxCkoduumpUmZYGWbWunzEhFuLB3Wmk1zQIDAQAB
-            -----END RSA PUBLIC KEY-----"
-
-            
-            let privString = "-----BEGIN RSA PRIVATE KEY-----Proc-Type: 4,ENCRYPTED DEK-Info: AES-128-CBC,27B4410682A0BE2EB4F617312B04C27Du92zktQtWQJsGz5JluXkWjGWX8JGZSCBSr040iMI02SA8h1ymMsGSh9PZAEeBYrAkuCRQTxMDeLPp6+gqycaMsqpBKGNC9OA0PBQ+UdlNhHRNvL0B1Z8Z5aCYO23vsNn1LWsb6ysyNQI5fWTplsk2riGQ4GKZNjlyZLnzdfXFf6B+ek6FJMsBih6J5pyg4zRZV57SZF4cbautAGeR6YoF1dUqa0MegMezQ+tVXvnr6kecTn85sbnMjJY8J2TsJmSrhwQ7zCes/NLPUow9gsmS5LH1lN52gV3sGD9cBhI+mvLpuQUAp381GjzAoGvwj1cnAskcz4leGn4n3c77Ourw1nocHD7VgQNnYUQYt0nftFiLSZwS+Fu851ZVt4anuMsthwVl8g/xfDAGtITGQHxZy3dSRF5erwaVP3zou1tNit+J98Lli270/6UacBvLCVSNP4GwQU72L/zkbXO1AMZ9ZonlacksVXtyeCWR/B+H/tweWjfQwvhPgMl4FdGQQ2ogvkgdCt2tlnD0GiGQGSTyeYk+ucPLQnjrl3B0b5JGh50JnpaVitCuM6iaH3cDuekq9hS6Ll30jtYoxeGHAd/mBc5vVdDhZY+w7cX81kXYDoF0Pt6qcfTUod4HM2+Oe4AhynO2yd4aMnjHsbKTWYD+brjVT8+6tvGhqwnBTYVaNuRnFMP1dsZReG1iY1p14XkqAQXsTX3wtrx/+XB70NPO4nYyYa6EyXMsE/nlSxc9Atzlgu5s6PtHByCy0bf8wun9iRHj1KLYpqzCpJGYHlCYPZCQ+gc5fhreUeFVtD2f21sm1XnD5GMAO/I2lfPILsnnse8BtAJCWvQ82Q/lvrG4IXXHxIyawT2afpKP+PAm2/SimOHpxcLfLAK32EBcqwHoDLaEUonTQd8Ty081GbIkQ2nezT4BDrY++ngm6sRYELpIdzG6YmybwG3ew4DShBvYQN3zzOIoVsuxCg2hLYF9f+pmOgpe/vZXPzd34H5L3+JlL18ABzuIltKDIg4EYue7tCbyPWy2HCMlNrpQiu+9/6cW/1JpW47z9ny5wKtY0tKBvbaVN6pvUk2f1dfkB6AS26Kla8p0cSh0P7sQTmqsswFtXvV+RQC+fWXG8OyAoPAc50DP+/LwIqsxhnoSfaBGJ5Z2hZ2T2dbwgdpJ/ZmKh28UWe4nNZczmy+wc2DLWja9ELRyZezkbZddbWl6CcbaTEp4Y73sGyb7DrA3Fjt1g0/UTE0TF2ADtCP65xs2X38nuqEiDU7WTrJSsBG6qrvg3HWI14VyonMi79aKL69DOF1HsrBf2SjEK8ScM6QJL9jbpyocdso5yt3b/i0UzwT2ctnLhdX8zIeVesP6AXyhpLFokoB47hOzTd2OCdMs0zKzkaODHsK+kpHzU5T8IQ2IBzRg13baC6v26GITWJtkaIz3pEHVNB9yk8ZJdOmC13yyEvS58qqBDT8orkfysk0LzenhvZEQeshExUQLSBaeLf7KK583d6+fW5RGhL72mK4rGNbYXs95Rna5OhWxrEIc6NaXLrIBOMStFjcyQjWYUopNT8SAcgClvbNtaSHTkhuwZe24wIVvUTm/6QNMVlH-----END RSA PRIVATE KEY-----"
-            
-            let encrypted = try! SwiftyRSA.encryptString(str, publicKeyPEM: pemString)
-            print("encrypt is \(encrypted)")
-            let decrypted = try! SwiftyRSA.decryptString(encrypted, privateKeyPEM: privString)
-            print("decrypt is \(decrypted)")*/
-            
+            //encryption here
             prefs.setValue(netid_textfield.text, forKey: "netid")
             prefs.setValue(password_textfield.text, forKey: "password")
             

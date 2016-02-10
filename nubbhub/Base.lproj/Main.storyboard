@@ -669,8 +669,9 @@
                                     <segue destination="lu0-57-RZY" kind="unwind" unwindAction="unwindToSettings:" id="vEC-Pn-Tsp"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="qk6-eB-pYX">
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="qk6-eB-pYX">
                                 <rect key="frame" x="250" y="36" width="100" height="100"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="OEI-dL-mF6"/>
                                     <constraint firstAttribute="height" constant="100" id="Z34-BV-8vV"/>

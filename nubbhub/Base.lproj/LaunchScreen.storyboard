@@ -18,13 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9e-cc-dsl">
-                                <rect key="frame" x="180" y="158" width="240" height="284"/>
+                                <rect key="frame" x="170" y="155" width="260" height="290"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="KjA-5m-m5D">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSH-ob-pgr">
-                                        <rect key="frame" x="44" y="234" width="153" height="49.5"/>
+                                        <rect key="frame" x="54" y="232" width="153" height="50"/>
                                         <attributedString key="attributedText">
                                             <fragment content="nubbhub">
                                                 <attributes>
@@ -35,18 +32,21 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="KjA-5m-m5D">
+                                        <rect key="frame" x="10" y="0.0" width="240" height="240"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="BnI-De-a69"/>
-                                    <constraint firstAttribute="height" constant="284" id="yXq-Pr-32H"/>
+                                    <constraint firstAttribute="height" constant="290" id="B8H-wp-boI"/>
+                                    <constraint firstAttribute="width" constant="260" id="ic6-4G-bcs"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.18608202443280975" green="0.18608202443280975" blue="0.18608202443280975" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="l9e-cc-dsl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="RYs-aD-nfC"/>
-                            <constraint firstItem="l9e-cc-dsl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SFt-X6-a28"/>
+                            <constraint firstItem="l9e-cc-dsl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Y3l-Xc-DXP"/>
+                            <constraint firstItem="l9e-cc-dsl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="awY-DF-Qct"/>
                         </constraints>
                     </view>
                 </viewController>

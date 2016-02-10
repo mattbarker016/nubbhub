@@ -1,0 +1,10 @@
+PODS:
+  - SwiftyRSA (0.1.0)
+
+DEPENDENCIES:
+  - SwiftyRSA (~> 0.1)
+
+SPEC CHECKSUMS:
+  SwiftyRSA: edc3d63eaf18dcbc374938b7ef775a0a44c1d736
+
+COCOAPODS: 0.39.0

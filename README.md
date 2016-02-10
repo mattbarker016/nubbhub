@@ -2,6 +2,8 @@
 
 Network utility to measure and track NUBB data usage at Cornell University
 
+## In case of issues...
+
 ## Features
 - Elegant graphical representation of user's total usage in the billing cycle
 - Helpful usage statistics

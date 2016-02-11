@@ -302,12 +302,6 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
         
         spinner.stopAnimating()
         
-        //print("nubb: totalUsage is \(nubb!.totalUsage), totalIn is \(nubb!.totalIn), totalOut is \(nubb!.totalOut), see devices below, dataCap is \(nubb!.dataCap), and billingRate is \(nubb!.billingRate).")
-        
-        //for device in nubb!.devices {
-            //print("\(device.name): totalUsage: \(device.totalUsage), totalIn: \(device.totalIn), totalOut: \(device.totalOut), color is \(device.color) and id is \(device.id)")
-        //}
-        
         print("drawGraph done")
     }
     
@@ -461,7 +455,7 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
         else {
             print("some other website was visited")
         }
-    
+        
         print("didFinishNavigation is finished")
     }
     
@@ -469,12 +463,13 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
     func timerAction(){
         counter += 1
         
-        print("title: \(webView.title!)")
-        print("loading: \(webView.loading)")
-        print("estimated: \(webView.estimatedProgress)")
-        print("URL: \(webView.URL!)")
-        
         if counter == 12 {
+            
+            print("title: \(webView.title!)")
+            print("loading: \(webView.loading)")
+            print("estimated: \(webView.estimatedProgress)")
+            print("URL: \(webView.URL!)")
+            
             timer.invalidate()
             counter = 0
             webView.stopLoading()
@@ -482,7 +477,6 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
             alertController.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: { (UIAlertAction) -> Void in
                 self.spinner.stopAnimating()
                 self.timer.invalidate()
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerAction", userInfo: nil, repeats: true)
             }))
             alertController.addAction(UIAlertAction(title: "Reload", style: UIAlertActionStyle.Cancel, handler: { (UIAlertAction) -> Void in
                 self.webView.loadRequest(NSURLRequest(URL: NSURL(string:"https://nubb.cornell.edu")!))

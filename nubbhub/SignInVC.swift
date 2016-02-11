@@ -137,8 +137,6 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         
-        print("sign in didFinishNavigation running")
-        
         if signInWebView.title == "Cornell University Web Login" {
             let errorJS = "document.getElementById('reason').textContent"
             signInWebView.evaluateJavaScript(errorJS, completionHandler: { (result, error) in
@@ -163,6 +161,22 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
             
             self.performSegueWithIdentifier("unwind", sender: self)
         }
+        
+        if signInWebView.URL!.absoluteString.containsString("idmbuild@fox02") {
+            
+            print("damn url happened")
+            
+            let loadUsernameJS = "document.getElementById('netid').value = '\(netid_textfield.text!)';"
+            let loadPasswordJS = "document.getElementById('password').value = '\(password_textfield.text!)';"
+            let submitFormJS = "document.getElementById('password').form.submit();"
+            
+            signInWebView.evaluateJavaScript(loadUsernameJS, completionHandler: { (result, error) in })
+            signInWebView.evaluateJavaScript(loadPasswordJS, completionHandler: { (result, error) in })
+            signInWebView.evaluateJavaScript(submitFormJS, completionHandler: { (result, error) in })
+        }
+        
+        print("webview finished")
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3J-dc-NCh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10102" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z3J-dc-NCh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -139,7 +139,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="redraw" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gMq-Vg-2ZM">
-                                <rect key="frame" x="20" y="173" width="560" height="353"/>
+                                <rect key="frame" x="20" y="173" width="560" height="407"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="72" id="oQ5-3w-vtN" customClass="DeviceTableCell" customModule="nubbhub" customModuleProvider="target">
@@ -559,29 +559,23 @@
                                     <outlet property="delegate" destination="Z3J-dc-NCh" id="7ch-5a-SPw"/>
                                 </connections>
                             </collectionView>
-                            <adBannerView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="6zn-0N-U2O">
-                                <rect key="frame" x="60" y="534" width="480" height="66"/>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gMq-Vg-2ZM" firstAttribute="leading" secondItem="P9K-1z-EYz" secondAttribute="leadingMargin" id="1W7-uA-5k0"/>
-                            <constraint firstItem="6zn-0N-U2O" firstAttribute="centerX" secondItem="P9K-1z-EYz" secondAttribute="centerX" id="BgY-wR-9aA"/>
                             <constraint firstItem="gMq-Vg-2ZM" firstAttribute="top" secondItem="8AU-CD-9c7" secondAttribute="bottom" constant="8" id="DW2-kg-RJa"/>
-                            <constraint firstItem="6zn-0N-U2O" firstAttribute="top" secondItem="gMq-Vg-2ZM" secondAttribute="bottom" constant="8" id="Mte-hN-6k4"/>
                             <constraint firstItem="DKm-dE-hsD" firstAttribute="trailing" secondItem="P9K-1z-EYz" secondAttribute="trailingMargin" constant="-10" id="QQK-ss-jQl"/>
-                            <constraint firstItem="rx9-Ob-QJD" firstAttribute="top" secondItem="6zn-0N-U2O" secondAttribute="bottom" id="QwZ-dS-1hG"/>
                             <constraint firstItem="tHs-hA-DZm" firstAttribute="leading" secondItem="P9K-1z-EYz" secondAttribute="leadingMargin" id="S3g-ay-5sR"/>
                             <constraint firstItem="gMq-Vg-2ZM" firstAttribute="trailing" secondItem="P9K-1z-EYz" secondAttribute="trailingMargin" id="U3v-aP-fMw"/>
                             <constraint firstItem="DKm-dE-hsD" firstAttribute="top" secondItem="tHs-hA-DZm" secondAttribute="bottom" constant="-0.5" id="XZC-p4-uC4"/>
                             <constraint firstItem="DKm-dE-hsD" firstAttribute="leading" secondItem="P9K-1z-EYz" secondAttribute="leadingMargin" constant="-10" id="ceo-ic-pT3"/>
                             <constraint firstItem="tHs-hA-DZm" firstAttribute="top" secondItem="NWD-ri-N0o" secondAttribute="bottom" placeholder="YES" id="f6e-6k-ech"/>
+                            <constraint firstItem="rx9-Ob-QJD" firstAttribute="top" secondItem="gMq-Vg-2ZM" secondAttribute="bottom" constant="20" id="hcZ-zS-sUZ"/>
                             <constraint firstItem="8AU-CD-9c7" firstAttribute="leading" secondItem="P9K-1z-EYz" secondAttribute="leadingMargin" id="mAR-mG-83V"/>
                             <constraint firstItem="8AU-CD-9c7" firstAttribute="top" secondItem="DKm-dE-hsD" secondAttribute="bottom" constant="8" id="q1U-Io-xfn"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomAd" destination="6zn-0N-U2O" id="L1b-eW-awe"/>
                         <outlet property="detailsLabel" destination="8AU-CD-9c7" id="qkz-il-euh"/>
                         <outlet property="deviceTable" destination="gMq-Vg-2ZM" id="h30-Uf-cmr"/>
                         <outlet property="overviewCollectionView" destination="DKm-dE-hsD" id="h0P-KJ-DoW"/>

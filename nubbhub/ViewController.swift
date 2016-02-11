@@ -8,13 +8,10 @@
 
 import UIKit
 import WebKit
-import iAd
 
-class ViewController: UIViewController, WKNavigationDelegate, ADBannerViewDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate {
+class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var deviceTable: UITableView!
-    @IBOutlet weak var bottomAd: ADBannerView!
-    
     @IBOutlet weak var overviewCollectionView: UICollectionView!
     
     @IBOutlet weak var overviewLabel: UILabel!
@@ -137,12 +134,11 @@ class ViewController: UIViewController, WKNavigationDelegate, ADBannerViewDelega
         
         //overviewCollectionView.selectItemAtIndexPath(NSIndexPath(index: 1), animated: true, scrollPosition: UICollectionViewScrollPosition.CenteredHorizontally)
         
-        //delegates and dataSource for tableView, collectionView, and adBannerView
+        //delegates and dataSource for tableView, collectionView
         deviceTable.dataSource = self
         deviceTable.delegate = self
         overviewCollectionView.dataSource = self
         overviewCollectionView.delegate = self
-        bottomAd.delegate = self
         
         print("viewDidLoad did finish")
  
@@ -637,10 +633,6 @@ class ViewController: UIViewController, WKNavigationDelegate, ADBannerViewDelega
             return cell
             }
         return cell
-    }
-    
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-       
     }
     
     func formatDateArray(dateArray: [String]) -> [String] {

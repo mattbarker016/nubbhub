@@ -52,6 +52,7 @@ class AboutVC: UIViewController, SFSafariViewControllerDelegate, MFMailComposeVi
     
     //doesn't work in simulator
     func sendFeedback(sender: UITapGestureRecognizer) {
+        profilePic.alpha = 0.6
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
@@ -65,7 +66,7 @@ class AboutVC: UIViewController, SFSafariViewControllerDelegate, MFMailComposeVi
         mailComposerVC.mailComposeDelegate = self
         mailComposerVC.setToRecipients(["mjb485@cornell.edu"])
         mailComposerVC.setSubject("nubbhub feedback")
-        mailComposerVC.setMessageBody("Wow, this app is amazing!", isHTML: false)
+        mailComposerVC.setMessageBody("Hey, you found the secret feedback screen! Someone reads their GitHub README files.", isHTML: false)
         return mailComposerVC
     }
     
@@ -75,6 +76,7 @@ class AboutVC: UIViewController, SFSafariViewControllerDelegate, MFMailComposeVi
     }
     
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        profilePic.alpha = 1.0
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     

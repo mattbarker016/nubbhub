@@ -22,7 +22,7 @@ Finally, on to the good stuff...
 	- Upload Amount
 - View past billing cycle data (from Aug. 2015 on)
 - Eight colorful themes
-- Confirguable notifcations when user's have exceeded a certain amount of data
+- [BETA] Confirguable notifcations when user's have exceeded a certain amount of data
 - Guest mode, to not leave non-Cornellians left out on the fun
 
 ## Little Touches
@@ -47,7 +47,7 @@ Finally, on to the good stuff...
 - Calendar button tap target is too small
 
 ## Roadmap
-- Create widget
+- Create Today Widget in Notification Center
 - Security security security (or alternate security methods)
 - Streamline OverviewCollectionView
 - Create instructional graphic for sign-in screen

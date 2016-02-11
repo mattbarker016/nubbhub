@@ -30,5 +30,12 @@ Network utility to measure and track NUBB data usage at Cornell University
 ## Known Issues
 
 ## Roadmap
+- Create widget
+- Streamline OverviewCollectionView
+- Create instructional graphic for sign-in screen
+	- overlay main UI with labels, descriptions, units, etc.
+- decide on nubbhub pro (IAP purchase)
+	- multiple widgets, themes
+	- remove ads
 
 ## Credits / Acknowledgements

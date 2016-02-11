@@ -63,6 +63,7 @@ class OverviewCVC: UICollectionViewCell {
         }
         
         if identifier == "forecast" {
+            forecastNum.font = UIFont(name: "HelveticaNeue-Light", size: 42) //reset bold / red
             if reduced {
                 forecastTop.font = UIFont(name: "HelveticaNeue", size: 12)
                 forecastNum.font = UIFont(name: "HelveticaNeue-Light", size: 32)
@@ -71,7 +72,6 @@ class OverviewCVC: UICollectionViewCell {
             forecastTop.text = "forecast"
             forecastNum.text = "\(gbPerMonth)"
             forecastBot.text = "GB / month"
-            //forecastNum.font = UIFont(name: "HelveticaNeue-Light", size: 42)
             forecastTop.textAlignment = .Center; forecastTop.textColor = theme.secondary
             forecastNum.textAlignment = .Center; forecastNum.textColor = theme.secondary
             forecastBot.textAlignment = .Center; forecastBot.textColor = theme.secondary
@@ -106,6 +106,7 @@ class OverviewCVC: UICollectionViewCell {
         }
         
         if identifier == "cost" {
+            costNum.font = UIFont(name: "HelveticaNeue-Light", size: 42) //reset bold / red
             if (data.totalUsage > data.dataCap || helper) && !(data.totalUsage > data.dataCap && helper) {
                 costTop.text = "amount owed"
                 costNum.text = "\(round(Float(data.totalUsage - data.dataCap) * data.billingRate * 100) / 100)"
@@ -132,7 +133,6 @@ class OverviewCVC: UICollectionViewCell {
                 costNum.font = UIFont(name: "HelveticaNeue-Light", size: 32)
                 costBot.font = UIFont(name: "HelveticaNeue", size: 10)
             }
-            //costNum.font = UIFont(name: "HelveticaNeue-Light", size: 42)
             costTop.textAlignment = .Center; costTop.textColor = theme.secondary
             costNum.textAlignment = .Center; costNum.textColor = theme.secondary
             costBot.textAlignment = .Center; costBot.textColor = theme.secondary

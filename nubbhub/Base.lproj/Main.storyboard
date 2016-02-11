@@ -139,7 +139,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="redraw" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gMq-Vg-2ZM">
-                                <rect key="frame" x="20" y="173" width="560" height="407"/>
+                                <rect key="frame" x="20" y="173" width="560" height="427"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="72" id="oQ5-3w-vtN" customClass="DeviceTableCell" customModule="nubbhub" customModuleProvider="target">
@@ -570,7 +570,7 @@
                             <constraint firstItem="DKm-dE-hsD" firstAttribute="top" secondItem="tHs-hA-DZm" secondAttribute="bottom" constant="-0.5" id="XZC-p4-uC4"/>
                             <constraint firstItem="DKm-dE-hsD" firstAttribute="leading" secondItem="P9K-1z-EYz" secondAttribute="leadingMargin" constant="-10" id="ceo-ic-pT3"/>
                             <constraint firstItem="tHs-hA-DZm" firstAttribute="top" secondItem="NWD-ri-N0o" secondAttribute="bottom" placeholder="YES" id="f6e-6k-ech"/>
-                            <constraint firstItem="rx9-Ob-QJD" firstAttribute="top" secondItem="gMq-Vg-2ZM" secondAttribute="bottom" constant="20" id="hcZ-zS-sUZ"/>
+                            <constraint firstItem="rx9-Ob-QJD" firstAttribute="top" secondItem="gMq-Vg-2ZM" secondAttribute="bottom" id="hcZ-zS-sUZ"/>
                             <constraint firstItem="8AU-CD-9c7" firstAttribute="leading" secondItem="P9K-1z-EYz" secondAttribute="leadingMargin" id="mAR-mG-83V"/>
                             <constraint firstItem="8AU-CD-9c7" firstAttribute="top" secondItem="DKm-dE-hsD" secondAttribute="bottom" constant="8" id="q1U-Io-xfn"/>
                         </constraints>
@@ -983,6 +983,6 @@ Me (I worked damn hard on this)
         <image name="youtube" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h84-7R-MbE"/>
+        <segue reference="b4m-eP-4Ma"/>
     </inferredMetricsTieBreakers>
 </document>

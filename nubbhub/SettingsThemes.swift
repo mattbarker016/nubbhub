@@ -95,13 +95,4 @@ class SettingsThemes: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func tableDisplay(cell: UITableViewCell, theme: Theme) {
-        //uncomment these two lines
-        //
-        //cell!.textLabel?.textColor = themes[indexPath.row].arc
-        //cell!.backgroundColor = themes[indexPath.row].primary
-        //
-        //call this function instead in cellForRow, add any exceptions here as if statement
-    }
-    
 }

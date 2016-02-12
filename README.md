@@ -41,9 +41,9 @@ Finally, on to the good stuff...
 ## Known Issues
 - Security (see First Off..)
 - Online connectivity failure (see First Off...)
+- signing out and signing back in with a different NetID doesn't change data
 - Notification, Widget, and nubbhub pro options in Settings are unfinished
 	- Notifications should (theoretically) still fire when background fetch is run and 50%, 75%, or 90% of data is used
-- Minor theming bugs
 - Calendar button tap target is too small
 
 ## Roadmap

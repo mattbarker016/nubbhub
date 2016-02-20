@@ -18,6 +18,9 @@ class AboutVC: UIViewController, SFSafariViewControllerDelegate, MFMailComposeVi
     @IBOutlet weak var youtube: UIButton!
     
     override func viewDidLoad() {
+        
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
         profilePic.layer.cornerRadius = profilePic.frame.size.width / 2;
         github.layer.cornerRadius = github.frame.size.width / 5
         youtube.layer.cornerRadius = youtube.frame.size.width / 5

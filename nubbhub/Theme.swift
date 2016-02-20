@@ -53,6 +53,7 @@ class Theme: NSCoder {
         return Theme(name: "modern", primary: UIColor.blackColor(), secondary: UIColor.whiteColor(), arc: UIColor.redColor(), colorArray: [UIColor.redColor(), UIColor.cyanColor(), UIColor.greenColor(), UIColor.yellowColor(), UIColor.orangeColor(), UIColor.magentaColor()], statusBar: ".LightContent", gradient: nil)
     }
     
+    //in progress
     func modernGradient() -> Theme {
         return Theme(name: "modern gradient", primary: UIColor.blackColor(), secondary: UIColor.whiteColor(), arc: UIColor.redColor(), colorArray: [UIColor.redColor(), UIColor.cyanColor(), UIColor.greenColor(), UIColor.yellowColor(), UIColor.orangeColor(), UIColor.magentaColor()], statusBar: ".LightContent", gradient: [UIColor.blackColor(), UIColor.redColor()])
     }

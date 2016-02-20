@@ -36,16 +36,11 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         print("settings vc view did load firing")
+        UIApplication.sharedApplication().statusBarStyle = theme!.style(theme!.statusBar)!
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         //prefs.setInteger(notifcation, forKey: <#T##String#>)
         //NSUserDefaults.standardUserDefaults().valueForKey("notificationSecondAlert")
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        print("settings vc view did appear firing")
-        super.viewDidAppear(animated)
-        //UIApplication.sharedApplication().statusBarStyle = theme!.statusBar
     }
     
     override func viewDidDisappear(animated: Bool) {

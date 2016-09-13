@@ -29,7 +29,7 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
     
     var theme = Theme(name: "modern", primary: UIColor.blackColor(), secondary: UIColor.whiteColor(), arc: UIColor.redColor(), colorArray: [UIColor.redColor(), UIColor.cyanColor(), UIColor.greenColor(), UIColor.yellowColor(), UIColor.purpleColor(), UIColor.orangeColor(), UIColor.magentaColor()], statusBar: ".LightContent", gradient: nil)
     
-    var webView = WKWebView()
+    var webView: WKWebView!
     var counterView: CounterView?
     var spinner = UIActivityIndicatorView()
     var noDataUsageLabel = UILabel()
@@ -47,8 +47,7 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear is running")
-        print("theme is \(theme.name)")
+        //print("viewDidAppear is running, theme: \(theme.name)")
         
         UIApplication.sharedApplication().statusBarStyle = theme.style(theme.statusBar)!
         
@@ -75,7 +74,7 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
     }
     
     override func viewDidLoad() {
-        print("viewDidLoad did start")
+        //print("viewDidLoad did start")
         super.viewDidLoad()
         
         /*
@@ -86,6 +85,8 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
         */
         
         //loads webpage
+        let config = WKWebViewConfiguration()
+        webView = WKWebView(frame: view.bounds, configuration: config)
         self.webView.navigationDelegate = self
         if prefs.stringForKey("netid")?.isEmpty == false && prefs.stringForKey("password")?.isEmpty == false {
             self.webView.loadRequest(NSURLRequest(URL: NSURL(string:"https://nubb.cornell.edu")!))
@@ -109,6 +110,7 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
         
         //creates loading indictor
         spinner.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        spinner.color = theme.secondary
         spinner.startAnimating()
         view.addSubview(spinner)
         
@@ -306,19 +308,19 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
     }
     
     func themeHelper(theme: Theme) {
-        print("theme helper firing, theme is \(theme.name)")
+        //print("theme helper firing, theme is \(theme.name)")
         let gradient = CAGradientLayer()
         if theme.gradient != nil {
             gradient.frame = view.bounds
             gradient.colors = theme.gradientHelper(theme.gradient!)
             view.layer.insertSublayer(gradient, atIndex: 0)
         } else {
-            print("removing, or should be")
             gradient.removeFromSuperlayer()
             view.backgroundColor = theme.primary
         }
         settings.tintColor = theme.secondary
         calendar.tintColor = theme.secondary
+        spinner.color = theme.secondary
         noDataUsageLabel.textColor = theme.secondary
         captionLabel.textColor = theme.secondary
         overviewLabel.textColor = theme.secondary
@@ -350,7 +352,6 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
             }
         }
         
-        
         //return new data
         return Nubb(totalUsage: Int(self.parserHelper(data[3])),
             totalIn: Int(self.parserHelper(data[data.count - 3])),
@@ -367,6 +368,35 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
         return Float(string.componentsSeparatedByCharactersInSet(otherCharSet).joinWithSeparator(""))!
     }
     
+    func noNubb() {
+        self.counterView?.removeFromSuperview()
+        self.overviewCollectionView.hidden = true
+        self.deviceTable.hidden = true
+        self.overviewLabel.hidden = true
+        self.detailsLabel.hidden = true
+        
+        self.spinner.stopAnimating()
+        
+        self.noDataUsageLabel.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 200)
+        self.noDataUsageLabel.text = "no data usage"
+        self.noDataUsageLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 52)
+        if self.reduced { self.noDataUsageLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 44) }
+        self.noDataUsageLabel.sizeToFit()
+        self.noDataUsageLabel.textAlignment = .Center
+        self.noDataUsageLabel.textColor = self.theme.secondary
+        self.noDataUsageLabel.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY - 25)
+        self.view.addSubview(self.noDataUsageLabel)
+        
+        self.captionLabel.frame = CGRect(x: 0, y: 0, width: self.noDataUsageLabel.frame.width - 80, height: 200)
+        self.captionLabel.numberOfLines = 2
+        self.captionLabel.text = "tap the selector button to view another month"
+        self.captionLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
+        self.captionLabel.textAlignment = .Center
+        self.captionLabel.textColor = self.theme.secondary
+        self.captionLabel.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY + 35)
+        self.view.addSubview(self.captionLabel)
+    }
+    
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         
         print("didFinishNavigation running")
@@ -381,6 +411,7 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
             webView.evaluateJavaScript(loadUsernameJS, completionHandler: { (result, error) in })
             webView.evaluateJavaScript(loadPasswordJS, completionHandler: { (result, error) in })
             webView.evaluateJavaScript(submitFormJS, completionHandler: { (result, error) in })
+    
         }
         
         //parses webpage
@@ -463,12 +494,33 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
     func timerAction(){
         counter += 1
         
-        if counter == 12 {
+        if webView.title == "Network Usage-Based Billing" {
+            let parse = "y = document.getElementsByTagName('td'); a = []; for (i=0;i<y.length;i++) { a.push(y[i].textContent); }; a"
             
-            print("title: \(webView.title!)")
-            print("loading: \(webView.loading)")
-            print("estimated: \(webView.estimatedProgress)")
-            print("URL: \(webView.URL!)")
+            self.webView.evaluateJavaScript(parse, completionHandler: { (result, error) in
+                let data = result as! [String]
+                self.nubb = self.parser(data)
+                self.setUp()
+                print("site parsed, data passed, reloading!")
+                })
+            
+            self.spinner.stopAnimating()
+    
+        //get months of past cycles
+        let dateJS = "var data = document.getElementsByTagName('option'); x = []; for (var i=1;i<data.length;i++) { x.push(data[i].textContent); }; x"
+    
+        webView.evaluateJavaScript(dateJS, completionHandler: { (result, error) in
+            self.dateArray = self.formatDateArray((result as? [String])!.reverse())
+            self.calendar.enabled = true
+            print("dataArray filled")
+        })
+    
+            print("resetting timer")
+            self.timer.invalidate()
+            self.counter = 0
+        }
+
+        if counter == 12 {
             
             timer.invalidate()
             counter = 0
@@ -485,6 +537,7 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
             }))
             self.presentViewController(alertController, animated: true, completion: nil)
         }
+        
     }
     
     //create popover and send needed data to view
@@ -643,6 +696,95 @@ class ViewController: UIViewController, WKNavigationDelegate, UITableViewDataSou
     }
     
     @IBAction func unwindToMainView(sender: UIStoryboardSegue) { }
+    
+    func webStuff() {
+        print("webstuff firing")
+        //login to nubb.cornell.edu
+        if webView.title! == "Cornell University Web Login" {
+            
+            let loadUsernameJS = "document.getElementById('netid').value = '"+prefs.stringForKey("netid")!+"';"
+            let loadPasswordJS = "document.getElementById('password').value = '"+prefs.stringForKey("password")!+"';"
+            let submitFormJS = "document.getElementById('password').form.submit();"
+            
+            webView.evaluateJavaScript(loadUsernameJS, completionHandler: { (result, error) in })
+            webView.evaluateJavaScript(loadPasswordJS, completionHandler: { (result, error) in })
+            webView.evaluateJavaScript(submitFormJS, completionHandler: { (result, error) in })
+        }
+            
+            //parses webpage
+        else if webView.title! == "Network Usage-Based Billing" {
+            print("parsing site")
+            
+            //checks if nubb report exists
+            let checkJS = "document.getElementsByTagName('p')[2].textContent"
+            webView.evaluateJavaScript(checkJS, completionHandler: { (result, error) -> Void in
+                
+                //show message "no data usage"
+                if (result as! String).containsString("No NUBB data to report") {
+                    
+                    self.counterView?.removeFromSuperview()
+                    self.overviewCollectionView.hidden = true
+                    self.deviceTable.hidden = true
+                    self.overviewLabel.hidden = true
+                    self.detailsLabel.hidden = true
+                    
+                    self.spinner.stopAnimating()
+                    
+                    self.noDataUsageLabel.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 200)
+                    self.noDataUsageLabel.text = "no data usage"
+                    self.noDataUsageLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 52)
+                    if self.reduced { self.noDataUsageLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 44) }
+                    self.noDataUsageLabel.sizeToFit()
+                    self.noDataUsageLabel.textAlignment = .Center
+                    self.noDataUsageLabel.textColor = self.theme.secondary
+                    self.noDataUsageLabel.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY - 25)
+                    self.view.addSubview(self.noDataUsageLabel)
+                    
+                    self.captionLabel.frame = CGRect(x: 0, y: 0, width: self.noDataUsageLabel.frame.width - 80, height: 200)
+                    self.captionLabel.numberOfLines = 2
+                    self.captionLabel.text = "tap the selector button to view another month"
+                    self.captionLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
+                    self.captionLabel.textAlignment = .Center
+                    self.captionLabel.textColor = self.theme.secondary
+                    self.captionLabel.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY + 35)
+                    self.view.addSubview(self.captionLabel)
+                }
+                    
+                    //parse data, pass to variable test
+                else {
+                    
+                    let parse = "y = document.getElementsByTagName('td'); a = []; for (i=0;i<y.length;i++) { a.push(y[i].textContent); }; a"
+                    
+                    self.webView.evaluateJavaScript(parse, completionHandler: { (result, error) in
+                        let data = result as! [String]
+                        self.nubb = self.parser(data)
+                        self.setUp()
+                        print("site parsed, data passed, reloading!")
+                    })
+                    self.spinner.stopAnimating()
+                }
+            })
+            
+            //get months of past cycles
+            let dateJS = "var data = document.getElementsByTagName('option'); x = []; for (var i=1;i<data.length;i++) { x.push(data[i].textContent); }; x"
+            
+            webView.evaluateJavaScript(dateJS, completionHandler: { (result, error) in
+                self.dateArray = self.formatDateArray((result as? [String])!.reverse())
+                self.calendar.enabled = true
+                print("dataArray filled")
+            })
+            
+            print("resetting timer")
+            self.timer.invalidate()
+            self.counter = 0
+            
+        }
+            
+        else {
+            print("some other website was visited")
+        }
+
+    }
     
 }
 

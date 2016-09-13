@@ -15,7 +15,7 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
     @IBOutlet weak var password_textfield: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    var signInWebView = WKWebView()
+    var signInWebView = WKWebView(frame: CGRect(), configuration: WKWebViewConfiguration())
     let prefs = NSUserDefaults.standardUserDefaults()
     var timer = NSTimer()
     var counter = 0
@@ -32,8 +32,6 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
         signInWebView.navigationDelegate = self
         signInWebView.loadRequest(NSURLRequest(URL: NSURL(string: "https://nubb.cornell.edu")!))
         
-        //selects first textfield automatically
-        //netid_textfield.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,6 +59,7 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
     
     //updates display accordingly while checking is combo works
     @IBAction func signin(sender: AnyObject) {
+        print("signing in")
         password_textfield.endEditing(true)
         checkValidInfo()
     }
@@ -89,11 +88,13 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
         else {
             error("unfilled")
         }
+        print("checked valid info")
     }
     
     //timeout
     func timerAction(){
         counter += 1
+        webStuff()
         if counter == 10 {
             signInWebView.stopLoading()
             signInWebView.loadRequest(NSURLRequest(URL: NSURL(string:"https://nubb.cornell.edu")!))
@@ -135,9 +136,15 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    /*
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         
+        print("didFinishNav starting")
+        
         if signInWebView.title == "Cornell University Web Login" {
+            
+            print("title is CU Web Login")
+            
             let errorJS = "document.getElementById('reason').textContent"
             signInWebView.evaluateJavaScript(errorJS, completionHandler: { (result, error) in
                 if result != nil {
@@ -151,6 +158,8 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
         
         if signInWebView.title == "Network Usage-Based Billing" {
             
+            print("title is NUBB")
+            
             //encryption here
             prefs.setValue(netid_textfield.text, forKey: "netid")
             prefs.setValue(password_textfield.text, forKey: "password")
@@ -162,7 +171,9 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
             self.performSegueWithIdentifier("unwind", sender: self)
         }
         
-    }
+        print("didFinishNav done")
+        
+    }*/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("segue firing")
@@ -195,12 +206,46 @@ class SignInVC: UIViewController, WKNavigationDelegate, UITextFieldDelegate {
             }
             
             else {
-                destination.webView.loadRequest(NSURLRequest(URL: NSURL(string:"https://nubb.cornell.edu")!))
+                //destination.webView.loadRequest(NSURLRequest(URL: NSURL(string:"https://nubb.cornell.edu")!))
+                destination.webView = signInWebView
+                destination.webStuff()
                 UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
             }
 
             }
         }
+    
+    func webStuff() {
+        if signInWebView.title == "Cornell University Web Login" {
+            
+            print("title is CU Web Login")
+            
+            let errorJS = "document.getElementById('reason').textContent"
+            signInWebView.evaluateJavaScript(errorJS, completionHandler: { (result, error) in
+                if result != nil {
+                    if result!.containsString("Unable to log in with the supplied NetID and password") {
+                        self.timer.invalidate()
+                        self.error("incorrect")
+                    }
+                }
+            })
+        }
+        
+        if signInWebView.title == "Network Usage-Based Billing" {
+            
+            print("title is NUBB")
+            
+            //encryption here
+            prefs.setValue(netid_textfield.text, forKey: "netid")
+            prefs.setValue(password_textfield.text, forKey: "password")
+            
+            counter = 0
+            timer.invalidate()
+            dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), { ()->() in self.spinner.stopAnimating() })
+            
+            self.performSegueWithIdentifier("unwind", sender: self)
+        }
+    }
 
 }
-    
+
